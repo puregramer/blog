@@ -1,6 +1,6 @@
 
 export function load() {
-    return {
+   /* return {
         test: "hi"
-    };
+    };*/
 }
