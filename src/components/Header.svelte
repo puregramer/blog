@@ -1,8 +1,11 @@
 <script>
+import { afterNavigate } from '$app/navigation'
 import logo from '$lib/images/svelte-logo.svg';
 import profileImg from '$lib/images/js-logo.png';
 let isNavOpen = false;
 let isProfile = false;
+
+let currentRoute = null;
 
 export let isDarkMode;
 
@@ -10,6 +13,13 @@ function clickHandler() {``
     if (isProfile) isProfile = false;
     if (isNavOpen) isNavOpen = false;
 }
+
+afterNavigate(({ from, to }) => {
+    // console.log("== from ", from);
+    console.log("== to ", to);
+    currentRoute = to.route.id;
+
+})
 </script>
 
 <svelte:window on:click|preventDefault={clickHandler} />
@@ -54,11 +64,11 @@ function clickHandler() {``
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
                         <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-                        <a href="/introduce/" class="dark:bg-gray-900 dark:text-white px-3 py-2 rounded-md text-sm font-medium" aria-current="page">간단 소개</a>
+                        <a href="/introduce/" class="{currentRoute === '/introduce'? 'dark:bg-gray-900 dark:text-white bg-gray-100 px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white hover:bg-gray-50 px-3 py-2 rounded-md text-sm font-medium'}">간단 소개</a>
 
-                        <a href="#" class="dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white text-gray-400 px-3 py-2 rounded-md text-sm font-medium">프로젝트</a>
+                        <a href="/projects/" class="{currentRoute === '/projects'? 'dark:bg-gray-900 dark:text-white bg-gray-100 px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white hover:bg-gray-50 px-3 py-2 rounded-md text-sm font-medium'}">프로젝트</a>
 
-                        <a href="#" class="dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white text-gray-400 px-3 py-2 rounded-md text-sm font-medium">관심사</a>
+                        <a href="" class="dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white text-gray-400 px-3 py-2 rounded-md text-sm font-medium">관심사</a>
                     </div>
                 </div>
             </div>
@@ -127,9 +137,9 @@ function clickHandler() {``
     <div id="mobile-menu" class:block={isNavOpen} class:hidden={!isNavOpen}>
         <div class="space-y-1 px-2 pt-2 pb-3">
             <!-- Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" -->
-            <a href="/introduce/" class="dark:bg-gray-900 dark:text-white block px-3 py-2 rounded-md text-base font-medium" aria-current="page">간단 소개</a>
+            <a href="/introduce/" class="{currentRoute === '/introduce'? 'dark:bg-gray-900 dark:text-white bg-gray-100 block px-3 py-2 rounded-md text-base font-medium' : 'text-gray-400 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium'}" >간단 소개</a>
 
-            <a href="#" class="dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white text-gray-400 block px-3 py-2 rounded-md text-base font-medium">프로젝트</a>
+            <a href="/projects/" class="{currentRoute === '/projects'? 'dark:bg-gray-900 dark:text-white bg-gray-100 block px-3 py-2 rounded-md text-base font-medium' : 'text-gray-400 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium'}">프로젝트</a>
 
             <a href="#" class="dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white text-gray-400 block px-3 py-2 rounded-md text-base font-medium">관심사</a>
 

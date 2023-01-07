@@ -1,7 +1,7 @@
 <script>
     import { onMount } from 'svelte';
     import Stage from "$lib/tetris/Stage";
-    import { LEVEL } from "$lib/tetris/config";
+    import { LEVEL, KEY } from "$lib/tetris/config";
 
     const title = "puregramer@gmail.com";
     const metaDescription = "use Sveltekit and ...";
@@ -30,6 +30,26 @@
         grid = stage.getGrid();
     }
 
+    function processBlock(event) {
+        if (stage.moves[event.keyCode]) {
+            event.preventDefault();
+            // 이동 적용된 블럭 정보 가져옴
+            let block = stage.moves[event.keyCode](stage.$block);
+
+            if (event.keyCode === KEY.SPACE) {
+                // hard drop 처리
+                while(stage.validation(block)) {
+                    stage.$block.move(block);
+                    block = stage.moves[KEY.DOWN](stage.$block);
+                }
+                stage.$block.hardDrop();
+            } else if (stage.validation(block)) {
+                stage.$block.move(block);
+            }
+            stage.activeBlock();
+        }
+    }
+
     onMount(() => {
         time = {
             start: performance.now(),
@@ -45,6 +65,7 @@
     });
 </script>
 
+<svelte:window on:keydown|preventDefault={processBlock} />
 <svelte:head>
     <title>{title}</title>
     <meta name="description" content={metaDescription} />

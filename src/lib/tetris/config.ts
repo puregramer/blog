@@ -7,7 +7,7 @@ export const enum config {
 }
 
 export const LEVEL = {
-    0: 800,
+    0: 800, // 800
     1: 720,
 } as const;
 
