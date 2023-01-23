@@ -14,9 +14,13 @@ function clickHandler() {``
     if (isNavOpen) isNavOpen = false;
 }
 
+function profileHandler(e) {
+    window.location.href = e.target.href;
+}
+
 afterNavigate(({ from, to }) => {
     // console.log("== from ", from);
-    console.log("== to ", to);
+    // console.log("== to ", to);
     currentRoute = to.route.id;
 
 })
@@ -68,7 +72,7 @@ afterNavigate(({ from, to }) => {
 
                         <a href="/projects/" class="{currentRoute === '/projects'? 'dark:bg-gray-900 dark:text-white bg-gray-100 px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white hover:bg-gray-50 px-3 py-2 rounded-md text-sm font-medium'}">프로젝트</a>
 
-                        <a href="" class="dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white text-gray-400 px-3 py-2 rounded-md text-sm font-medium">관심사</a>
+                        <a href="/favorite/" class="{currentRoute === '/favorite'? 'dark:bg-gray-900 dark:text-white bg-gray-100 px-3 py-2 rounded-md text-sm font-medium' : 'text-gray-400 dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white hover:bg-gray-50 px-3 py-2 rounded-md text-sm font-medium'}">관심사</a>
                     </div>
                 </div>
             </div>
@@ -124,7 +128,7 @@ afterNavigate(({ from, to }) => {
                       class:animate-[EnterPopup_0.1s_ease-out]={isProfile} class:animate-[LeavePopup_0.1s_ease-in]={!isProfile}
                       class="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none" role="menu" aria-orientation="vertical" aria-labelledby="user-menu-button" tabindex="-1">
                         <!-- Active: "bg-gray-100", Not Active: "" -->
-                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">github</a>
+                        <a href="https://github.com/puregramer" on:click={profileHandler} class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-0">github</a>
 <!--                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-1">Settings</a>-->
 <!--                        <a href="#" class="block px-4 py-2 text-sm text-gray-700" role="menuitem" tabindex="-1" id="user-menu-item-2">Sign out</a>-->
                     </div>
@@ -141,8 +145,7 @@ afterNavigate(({ from, to }) => {
 
             <a href="/projects/" class="{currentRoute === '/projects'? 'dark:bg-gray-900 dark:text-white bg-gray-100 block px-3 py-2 rounded-md text-base font-medium' : 'text-gray-400 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium'}">프로젝트</a>
 
-            <a href="#" class="dark:text-gray-300 dark:hover:bg-gray-700 dark:hover:text-white text-gray-400 block px-3 py-2 rounded-md text-base font-medium">관심사</a>
-
+            <a href="/favorite/" class="{currentRoute === '/favorite'? 'dark:bg-gray-900 dark:text-white bg-gray-100 block px-3 py-2 rounded-md text-base font-medium' : 'text-gray-400 hover:bg-gray-50 dark:text-gray-300 dark:hover:text-white dark:hover:bg-gray-700 block px-3 py-2 rounded-md text-base font-medium'}">관심사</a>
 
         </div>
     </div>

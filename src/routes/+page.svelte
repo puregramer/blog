@@ -56,7 +56,7 @@
             elapsed: 0,
             level: LEVEL[stage.level]
         };
-        console.log("= time ", time, stage);
+        // console.log("= time ", time, stage);
         if (animateId) {
             cancelAnimationFrame(animateId);
         }
@@ -86,9 +86,9 @@
                 </div>
                 <div class="absolute inset-x-4 inset-y-12">
                     <h1 class="text-4xl font-bold tracking-tight sm:text-center sm:text-6xl dark:text-white">Front-end Web Developer.</h1>
-                    <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">Anim aute id magna aliqua ad ad non
-                        deserunt sunt. Qui irure qui lorem cupidatat commodo. Elit sunt amet fugiat veniam occaecat
-                        fugiat aliqua.</p>
+                    <p class="mt-6 text-lg leading-8 text-gray-600 sm:text-center">
+                        html5, javascript, typescript, vue, react, electron, svelte, sveltekit, canvas, nodejs, github, web game
+                    </p>
                     <div class="mt-8 flex gap-x-4 sm:justify-center">
                         <a href="/introduce/"
                            class="inline-block rounded-lg bg-indigo-600 px-4 py-1.5 text-base font-semibold leading-7 text-white shadow-sm ring-1 ring-indigo-600 hover:bg-indigo-700 hover:ring-indigo-700">
